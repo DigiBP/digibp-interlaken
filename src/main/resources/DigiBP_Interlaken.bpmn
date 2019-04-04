@@ -10,10 +10,6 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="SequenceFlow_051aerh" sourceRef="Task_0e9oyde" targetRef="ExclusiveGateway_1wepydy" />
     <bpmn:sequenceFlow id="SequenceFlow_1gpzzqj" sourceRef="Task_12x8ujd" targetRef="EndEvent_0g4qkhm" />
-    <bpmn:userTask id="Task_12x8ujd" name="Asses process instances">
-      <bpmn:incoming>SequenceFlow_07jcbkz</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1gpzzqj</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:exclusiveGateway id="ExclusiveGateway_1wepydy">
       <bpmn:incoming>SequenceFlow_051aerh</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_07jcbkz</bpmn:outgoing>
@@ -32,6 +28,10 @@
     <bpmn:serviceTask id="Task_0e9oyde" name="Provide online assessment">
       <bpmn:incoming>SequenceFlow_13q687d</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_051aerh</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Task_12x8ujd" name="Write in subsequent excel list">
+      <bpmn:incoming>SequenceFlow_07jcbkz</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1gpzzqj</bpmn:outgoing>
     </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -60,9 +60,6 @@
         <di:waypoint x="636" y="120" />
         <di:waypoint x="692" y="120" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="UserTask_0repknq_di" bpmnElement="Task_12x8ujd">
-        <dc:Bounds x="536" y="80" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_1wepydy_di" bpmnElement="ExclusiveGateway_1wepydy" isMarkerVisible="true">
         <dc:Bounds x="424" y="95" width="50" height="50" />
       </bpmndi:BPMNShape>
@@ -90,6 +87,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_0f01nvq_di" bpmnElement="Task_0e9oyde">
         <dc:Bounds x="266" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_15f0qq2_di" bpmnElement="Task_12x8ujd">
+        <dc:Bounds x="536" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
