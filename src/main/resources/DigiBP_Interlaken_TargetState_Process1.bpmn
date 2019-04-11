@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_057bbgy" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" id="Definitions_057bbgy" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
   <bpmn:collaboration id="Collaboration_0bqlvko">
     <bpmn:participant id="Participant_1unqkmc" name="Customer Company" processRef="TargetState" />
     <bpmn:participant id="Participant_1qqaglc" name="Applicant" processRef="Process_07wrczf" />
@@ -175,7 +175,7 @@ assessmentQuestion3=object.interviewQuestions[2];</camunda:script>
   <bpmn:process id="Process_07wrczf" isExecutable="false" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0bqlvko">
-      <bpmndi:BPMNShape id="Participant_1unqkmc_di" bpmnElement="Participant_1unqkmc" isHorizontal="true">
+      <bpmndi:BPMNShape id="Participant_1unqkmc_di" bpmnElement="Participant_1unqkmc" isHorizontal="true" bioc:stroke="black" bioc:fill="white">
         <dc:Bounds x="115" y="90" width="1619" height="265" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_0i64gnz_di" bpmnElement="ExclusiveGateway_0i64gnz" isMarkerVisible="true">
