@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_1l6akfp" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <decision id="AutomatedScreening" name="Automated first screening of candidates">
+    <extensionElements>
+      <biodi:bounds x="150" y="150" width="180" height="80" />
+    </extensionElements>
+    <decisionTable id="decisionTable_1" hitPolicy="FIRST">
+      <input id="input_1" label="Score">
+        <inputExpression id="inputExpression_1" typeRef="integer">
+          <text>score</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1mlphbj" label="Degree">
+        <inputExpression id="LiteralExpression_04wk7e3" typeRef="string">
+          <text>degree</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="Passed Assesment?" name="AssesmentPassed" typeRef="string">
+        <outputValues id="UnaryTests_1wpulv6">
+          <text>"Yes","ManualCheck","No"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_1otsmi9">
+        <description>The candidate has passed the first check</description>
+        <inputEntry id="UnaryTests_1clo9kr">
+          <text>&gt;=2</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0r1wy7m">
+          <text>"Bachelor","Master","PhD"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1yawr3b">
+          <text>"Yes"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1nlcmqy">
+        <description>The candidate needs to be checked manually</description>
+        <inputEntry id="UnaryTests_0c8f0m0">
+          <text>1</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1xmxi2p">
+          <text>"Bachelor","Master","PhD"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0h30uqr">
+          <text>"ManualCheck"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0twi7vd">
+        <description>The candidate is an idiot</description>
+        <inputEntry id="UnaryTests_0i90xmx">
+          <text>&lt;1</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0c69242">
+          <text>"PhD"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0fk82y9">
+          <text>"No"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_07dg4y3">
+        <inputEntry id="UnaryTests_1gjfio4">
+          <text>&gt;=3</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12xz4bt">
+          <text>"Apprenticeship"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1t0u6de">
+          <text>"ManualCheck"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ml2ow7">
+        <inputEntry id="UnaryTests_0pj7b2a">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0gmnems">
+          <text>"Apprenticeship"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1100868">
+          <text>"No"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ngz639">
+        <inputEntry id="UnaryTests_14qmu6k">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mapbep">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1r6kghu">
+          <text>"No"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
