@@ -185,7 +185,7 @@ ApplicationLink = object.ApplicationLink;</camunda:script>
         <dc:Bounds x="648" y="46" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="UserTask_0s3bimq_di" bpmnElement="UserTask_0s3bimq">
-        <dc:Bounds x="603" y="178" width="100" height="80" />
+        <dc:Bounds x="530" y="178" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ExclusiveGateway_0om8ad8_di" bpmnElement="ExclusiveGateway_0om8ad8" isMarkerVisible="true">
         <dc:Bounds x="801" y="146" width="50" height="50" />
@@ -209,9 +209,9 @@ ApplicationLink = object.ApplicationLink;</camunda:script>
       <bpmndi:BPMNEdge id="SequenceFlow_0gloa4f_di" bpmnElement="SequenceFlow_0gloa4f">
         <di:waypoint x="435" y="196" />
         <di:waypoint x="435" y="218" />
-        <di:waypoint x="603" y="218" />
+        <di:waypoint x="530" y="218" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="468" y="229" width="15" height="14" />
+          <dc:Bounds x="450" y="229" width="15" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1pjr2kh_di" bpmnElement="SequenceFlow_1pjr2kh">
@@ -220,7 +220,7 @@ ApplicationLink = object.ApplicationLink;</camunda:script>
         <di:waypoint x="826" y="146" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_06owvug_di" bpmnElement="SequenceFlow_06owvug">
-        <di:waypoint x="703" y="218" />
+        <di:waypoint x="630" y="218" />
         <di:waypoint x="826" y="218" />
         <di:waypoint x="826" y="196" />
       </bpmndi:BPMNEdge>
