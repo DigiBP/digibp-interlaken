@@ -23,10 +23,10 @@
       <rule id="DecisionRule_1otsmi9">
         <description>The candidate has passed the first check</description>
         <inputEntry id="UnaryTests_1clo9kr">
-          <text>&gt;=2</text>
+          <text>&gt;=60</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0r1wy7m">
-          <text>"Bachelor","Master","PhD"</text>
+          <text>"Bachelor degree","Master degree","PhD"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_1yawr3b">
           <text>"Yes"</text>
@@ -35,10 +35,10 @@
       <rule id="DecisionRule_1nlcmqy">
         <description>The candidate needs to be checked manually</description>
         <inputEntry id="UnaryTests_0c8f0m0">
-          <text>1</text>
+          <text>&gt;=40</text>
         </inputEntry>
         <inputEntry id="UnaryTests_1xmxi2p">
-          <text>"Bachelor","Master","PhD"</text>
+          <text>"Bachelor degree","Master degree","PhD"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0h30uqr">
           <text>"ManualCheck"</text>
@@ -47,10 +47,10 @@
       <rule id="DecisionRule_0twi7vd">
         <description>The candidate is an idiot</description>
         <inputEntry id="UnaryTests_0i90xmx">
-          <text>&lt;1</text>
+          <text>&lt;40</text>
         </inputEntry>
         <inputEntry id="UnaryTests_0c69242">
-          <text>"PhD"</text>
+          <text>"Bachelor degree","Master degree","PhD"</text>
         </inputEntry>
         <outputEntry id="LiteralExpression_0fk82y9">
           <text>"No"</text>
@@ -58,7 +58,7 @@
       </rule>
       <rule id="DecisionRule_07dg4y3">
         <inputEntry id="UnaryTests_1gjfio4">
-          <text>&gt;=3</text>
+          <text>&gt;=60</text>
         </inputEntry>
         <inputEntry id="UnaryTests_12xz4bt">
           <text>"Apprenticeship"</text>
