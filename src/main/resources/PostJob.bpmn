@@ -178,7 +178,7 @@ ApplicationLink = object.ApplicationLink;</camunda:script>
       <bpmndi:BPMNShape id="ExclusiveGateway_0af6hni_di" bpmnElement="ExclusiveGateway_0af6hni" isMarkerVisible="true">
         <dc:Bounds x="410" y="146" width="50" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="468" y="142" width="66" height="14" />
+          <dc:Bounds x="464" y="150" width="66" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="ServiceTask_1qyoy9u_di" bpmnElement="ServiceTask_1qyoy9u">
