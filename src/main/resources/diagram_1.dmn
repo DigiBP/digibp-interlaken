@@ -45,7 +45,7 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0twi7vd">
-        <description>The candidate is an idiot</description>
+        <description>The candidate does not meet requirements</description>
         <inputEntry id="UnaryTests_0i90xmx">
           <text>&lt;40</text>
         </inputEntry>
@@ -57,6 +57,7 @@
         </outputEntry>
       </rule>
       <rule id="DecisionRule_07dg4y3">
+        <description>The candidate needs to be checked manually</description>
         <inputEntry id="UnaryTests_1gjfio4">
           <text>&gt;=60</text>
         </inputEntry>
