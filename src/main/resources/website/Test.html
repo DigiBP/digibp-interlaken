@@ -1,0 +1,225 @@
+<html>
+	<header>
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/base/jquery-ui.css">
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="js/appointment-picker.min.js"></script>
+		<link rel="stylesheet" href="css/appointment-picker.css">
+		<link rel="stylesheet" href="css/main.css">
+	</header>
+
+	<body>
+		<div id="bodyPane">
+			<div id="titlePane"><h1>Applicants Management Tool</h1></div>
+			<br><br><br>
+			<table id="bodyTable">
+				<tr>
+					<td id="applicantsToBeChosenCol">
+						<h3>Applicants to be chosen:</h3>
+						<div id="applicantsToBeChosen">
+							<div id="applicants">
+								No applicants can be chosen for an interview!
+							</div>
+						</div>
+					</td>
+					<td id="scheduledInterviewsCol">
+						<h3>Scheduled interviews:</h3>
+						<div id="scheduledInterviews">
+							No interviews have been scheduled yet!
+						</div>
+					</td>
+				</tr>
+			</table>
+	
+			<div id="bodyFooter">
+				<p>&copy; 2019 Team Interlaken &ndash; University of Applied Sciences and Arts Northwestern Switzerland FHNW. All rights reserved.</p>
+			</div>
+		</div>
+	</body>
+	
+	
+	<script>		
+		
+		/*
+			Process step: Get possible interview partner information
+		*/
+		$.ajax({
+ 			dataType: "json",
+  			url: "https://hook.integromat.com/tni728nyvb5owvwg4t9v3r1tq6pnflxa",
+  			success: function(json) {
+   				if (json.Applicants[0].Name == " ") {
+   					console.log("+ + + No applicants are ready for an interview! + + +");
+   				} else {
+   					console.log("* * * Returned applicants: " + JSON.stringify(json.Applicants) + " * * *");
+   				
+   					$("#applicants").html('<tr class="tableHead">'
+     						+ '<td class="inviteCheckbox">Invite?</td>' 
+     						+ '<td class="applicantName">Name</td>' 
+     						+ '<td class="applicationScore">Application Score</td>'
+     						+ '<td class="assessmentScore">Assessment Score</td>'
+     						+ '<td class="culturalScore">Cultural Score</td>'
+	     					+ '<td class="totalScore">Total Score</td>'
+	     					+ '<td class="appointmentDate">Date</td>'
+	     					+ '<td class="appointmentTime">Starttime</td></tr>');
+   
+	      			$.each(json.Applicants, function(idx, applicant){
+    	 				$("#applicants").append('<tr id="row_' + applicant.ID + '">'
+     						+ '<td class="inviteCheckbox"><input type="checkbox" name="' + applicant.ID + '" id="cb_' + applicant.ID + '"value="' + applicant.ID + '"></td>' 
+     						+ '<td class="applicantName">' + applicant.Name + '</td>' 
+     						+ '<td class="applicationScore">' + applicant.ApplicationScore + '</td>'
+     						+ '<td class="assessmentScore">' + applicant.AssessmentScore + '</td>'
+     						+ '<td class="culturalScore">' + applicant.CulturalScore + '</td>'
+	     					+ '<td class="totalScore">' + applicant.TotalScore + '</td>'
+    	 					+ '<td class="appointmentPicker_' + applicant.ID + ' picker"><input type="text" class="datePicker" id="dp_' + applicant.ID + '" readonly="readonly"></td>'
+     						+ '<td class="appointmentPicker_' + applicant.ID + ' picker"><input id="timeFrom_' + applicant.ID + '" type="text" name="time-form" value=""' 
+     							+ 'aria-live="assertive" autocomplete="off" aria-label="Use up or down arrow keys to change time" readonly="readonly"></td></tr>');
+		
+						$('#cb_' + applicant.ID).change(function() {
+       						if(this.checked) {
+        			 			$(".appointmentPicker_" + applicant.ID).show();
+    	  					} else {
+	      						$(".appointmentPicker_" + applicant.ID).hide();
+      						}    
+    					});
+		
+						$("#dp_" + applicant.ID).datepicker({ dateFormat: "yy-m-dd" });
+		
+     					new AppointmentPicker(document.getElementById("timeFrom_" + applicant.ID), {
+							interval: 30,
+							startTime: 13,
+							endTime: 17
+						});
+					
+						$(".appointmentPicker_" + applicant.ID).hide();
+			
+   					});
+   					$("#applicants").append('<tr>'
+   						+ '<td colspan="4"><button id="inviteBtn" onclick="inviteApplicants()">Invite Applicants</button></td>'
+   						+ '<td colspan="4"><button id="declineBtn" onclick="declineApplicants()">Decline Applicants</button></td></tr>');
+   				
+   				}
+   		 	},
+    		error: function (xhr) {
+        		console.log(xhr.responseText);
+      		}
+		});
+		
+		
+		/*
+			No official process step. Show already scheduled interviews for a better overview
+		*/	
+		$.ajax({
+ 			dataType: "json",
+  			url: "https://hook.integromat.com/hg8yp5phhddlb8j34sk0axwcy44pvwkd",
+  			success: function(json) {
+   				if (json.Interviews[0].Name == null) {
+   					console.log("+ + + No applicants are scheduled for an interview! + + +");
+   				} else {
+   					console.log("* * * Returned scheduled interviews: " + JSON.stringify(json.Interviews) + " * * *");
+   				
+   					$("#scheduledInterviews").html('<tr class="tableHead">'
+     						+ '<td class="applicantName">Name</td>' 
+     						+ '<td class="interviewDate">Date</td>'
+     						+ '<td class="interviewStartTime">Starttime</td>'
+     						+ '<td class="interviewEndTime">Endtime</td></tr>');
+   
+	      			$.each(json.Interviews, function(idx, interview){
+    	 				var date = (interview.Starttime.split(" "))[0];
+						var starttime = (interview.Starttime.split(" "))[1];
+						var endtime = (interview.Endtime.split(" "))[1];
+    	 				
+    	 				
+    	 				$("#scheduledInterviews").append('<tr>'
+     						+ '<td class="applicantName">' + interview.Name + '</td>' 
+     						+ '<td class="interviewDate">' + date + '</td>'
+     						+ '<td class="interviewStartTime">' + starttime.replace(":00", "") + '</td>'
+     						+ '<td class="interviewEndTime">' + endtime.replace(":00", "") + '</td></tr>');
+   					});
+   				}
+   		 	},
+    		error: function (xhr) {
+        		console.log(xhr.responseText);
+      		}
+		});
+			
+		/*
+			Process step: Schedule interviews with selected applicants
+		*/
+		function inviteApplicants() {
+			var valid = true;
+			
+			$('.inviteCheckbox input:checked').each(function() {
+				var id = $(this).attr('name');
+				if ($("#dp_" + id).datepicker().val()=="" || $("#timeFrom_" + id).val()=="") {
+					valid = false;
+				}
+			});
+			
+			if (valid) {
+				if (confirm("Are you sure you have selected applicants you want to INVITE for an interview? The decision cannot be reversed!")) {
+					$('.inviteCheckbox input:checked').each(function() {
+						var id = $(this).attr('name');
+						
+						var date = $("#dp_" + id).datepicker().val();
+						var starttime = $("#timeFrom_" + id).val();
+						var values = starttime.split(":");
+						var hours = parseInt(values[0]) + 1;
+						var endtime = hours + ":" + values[1];
+				
+						var startdate = date + " " + starttime + ":00";
+						var enddate = date + " " + endtime + ":00";
+				
+						var postBodyChecked = '{"id": "' + id + '","startdate" : "' + startdate + '","enddate":"' + enddate + '"}';	
+					
+						$.ajax({
+ 							type: "POST",
+  							url: "https://hook.integromat.com/9r2vgkqn92qx69rw3tvej4xb8gtx1bxa",
+  							data: postBodyChecked,
+ 	 						success: function(data){
+    	    					console.log("- - - successfully invited applicant - - -");
+	    					},
+	    					error: function (xhr) {
+        						console.log(xhr.responseText);
+      						},
+  							contentType: 'application/json'
+						});
+					
+						$("#row_" + id).hide();
+					});
+				
+					alert("You have successfully invited the selected applicant(s)!\n\nTo get an updated version, please wait some seconds before reloading the page.");
+				}
+			} else {
+				alert("Please insert a date and time for all selected applicants!")
+			}
+		}
+		
+		
+		/*
+			Process step: Inform not-selected applicants
+		*/
+		function declineApplicants() {
+			if (confirm("Are you sure you have selected applicants you want to DECLINE indefinitely? The decision cannot be reversed!")) {
+				$('#applicants input:checked').each(function() {
+					var id = $(this).attr('name');									
+					var postBodyUnchecked = '{"id": "' + id + '"}';
+				
+					$.ajax({
+ 						type: "POST",
+  						url: "https://hook.integromat.com/o6liawkio2nru5wuq3mf2h5a4f1rkkp8",
+	 					data: postBodyUnchecked,
+  						success: function(data){
+    						console.log("- - - successfully declined applicant - - -");
+						},
+  						contentType: 'application/json'
+					});
+					
+					$("#row_" + id).hide();
+				});
+				
+				alert("You have successfully declined the selected applicant(s)!\n\nTo get an updated version, please wait some seconds before reloading the page.");
+			}
+		}
+	</script>
+
+</html>

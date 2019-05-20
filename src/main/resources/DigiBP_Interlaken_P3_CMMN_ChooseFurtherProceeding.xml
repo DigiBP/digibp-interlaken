@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cmmn:definitions xmlns:dc="http://www.omg.org/spec/CMMN/20151109/DC" xmlns:cmmndi="http://www.omg.org/spec/CMMN/20151109/CMMNDI" xmlns:cmmn="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/CMMN/20151109/DI" id="Definitions_09d5bbx" targetNamespace="http://bpmn.io/schema/cmmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <cmmn:case id="Case_1hi7x30">
+    <cmmn:casePlanModel id="CasePlanModel_1" name="Choose further proceeding">
+      <cmmn:planItem id="PlanItem_1" definitionRef="HumanTask_0qprk3d">
+        <cmmn:itemControl id="PlanItemControl_0xsvx8j">
+          <cmmn:manualActivationRule id="ManualActivationRule_1f3s38i" />
+        </cmmn:itemControl>
+      </cmmn:planItem>
+      <cmmn:planItem id="PlanItem_11e3akm" definitionRef="HumanTask_1teu2z2" />
+      <cmmn:planItem id="PlanItem_0q7w639" definitionRef="Milestone_012pwo6">
+        <cmmn:entryCriterion id="EntryCriterion_1q30kpp" sentryRef="Sentry_1c0pkvr" />
+      </cmmn:planItem>
+      <cmmn:planItem id="PlanItem_0kvm3jy" definitionRef="Milestone_05qn8g0">
+        <cmmn:entryCriterion id="EntryCriterion_02ag1bu" sentryRef="Sentry_011zo7h" />
+      </cmmn:planItem>
+      <cmmn:sentry id="Sentry_1c0pkvr">
+        <cmmn:planItemOnPart id="PlanItemOnPart_08s8gq3" sourceRef="PlanItem_1">
+          <cmmn:standardEvent>complete</cmmn:standardEvent>
+        </cmmn:planItemOnPart>
+      </cmmn:sentry>
+      <cmmn:sentry id="Sentry_011zo7h">
+        <cmmn:planItemOnPart id="PlanItemOnPart_0ztg8sd" sourceRef="PlanItem_1">
+          <cmmn:standardEvent>complete</cmmn:standardEvent>
+        </cmmn:planItemOnPart>
+      </cmmn:sentry>
+      <cmmn:sentry id="Sentry_1w0867l">
+        <cmmn:planItemOnPart id="PlanItemOnPart_09chhm4" sourceRef="PlanItem_0q7w639">
+          <cmmn:standardEvent>occur</cmmn:standardEvent>
+        </cmmn:planItemOnPart>
+      </cmmn:sentry>
+      <cmmn:sentry id="Sentry_0ixshs0">
+        <cmmn:planItemOnPart id="PlanItemOnPart_0i3gzh0" sourceRef="PlanItem_0kvm3jy">
+          <cmmn:standardEvent>occur</cmmn:standardEvent>
+        </cmmn:planItemOnPart>
+      </cmmn:sentry>
+      <cmmn:planningTable id="PlanningTable_0xunnq0">
+        <cmmn:discretionaryItem id="PlanItem_0vhorb8" definitionRef="HumanTask_1nodj3b" />
+        <cmmn:discretionaryItem id="PlanItem_0w6zhi7" definitionRef="HumanTask_00td655" />
+        <cmmn:discretionaryItem id="PlanItem_0xkmywb" definitionRef="HumanTask_1uv5zad" />
+      </cmmn:planningTable>
+      <cmmn:humanTask id="HumanTask_0qprk3d" name="decide on application" />
+      <cmmn:humanTask id="HumanTask_1nodj3b" name="Consult applicant&#39;s assessment results" />
+      <cmmn:humanTask id="HumanTask_1teu2z2" name="Consult interivew notes" />
+      <cmmn:humanTask id="HumanTask_00td655" name="Consult with future team members" />
+      <cmmn:milestone id="Milestone_012pwo6" name="offer job" />
+      <cmmn:milestone id="Milestone_05qn8g0" name="do not offer job" />
+      <cmmn:humanTask id="HumanTask_1uv5zad" name="Contact previous employer" />
+      <cmmn:exitCriterion id="ExitCriterion_0bgm1ux" sentryRef="Sentry_1w0867l" />
+      <cmmn:exitCriterion id="ExitCriterion_1c36ky6" sentryRef="Sentry_0ixshs0" />
+    </cmmn:casePlanModel>
+  </cmmn:case>
+  <cmmndi:CMMNDI>
+    <cmmndi:CMMNDiagram id="_5a66685b-5f57-4e2f-b1d1-acca4fae04b2">
+      <cmmndi:Size width="500" height="500" />
+      <cmmndi:CMMNShape id="DI_CasePlanModel_1" cmmnElementRef="CasePlanModel_1">
+        <dc:Bounds x="164" y="119" width="532" height="284" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_1bk1o4e_di" cmmnElementRef="PlanItem_1">
+        <dc:Bounds x="200" y="152" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_05zv0bh_di" cmmnElementRef="PlanItem_11e3akm">
+        <dc:Bounds x="200" y="290" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_0q7w639_di" cmmnElementRef="PlanItem_0q7w639">
+        <dc:Bounds x="495" y="149" width="100" height="40" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="EntryCriterion_1q30kpp_di" cmmnElementRef="EntryCriterion_1q30kpp">
+        <dc:Bounds x="485" y="155" width="20" height="28" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="PlanItem_0kvm3jy_di" cmmnElementRef="PlanItem_0kvm3jy">
+        <dc:Bounds x="495" y="206" width="100" height="40" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="EntryCriterion_02ag1bu_di" cmmnElementRef="EntryCriterion_02ag1bu">
+        <dc:Bounds x="485" y="211" width="20" height="28" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNEdge id="PlanItemOnPart_08s8gq3_di" cmmnElementRef="PlanItemOnPart_08s8gq3" targetCMMNElementRef="EntryCriterion_1q30kpp" isStandardEventVisible="false">
+        <di:waypoint x="300" y="192" />
+        <di:waypoint x="393" y="192" />
+        <di:waypoint x="393" y="169" />
+        <di:waypoint x="485" y="169" />
+        <cmmndi:CMMNLabel>
+          <dc:Bounds x="367" y="170.5" width="51" height="13" />
+        </cmmndi:CMMNLabel>
+      </cmmndi:CMMNEdge>
+      <cmmndi:CMMNEdge id="PlanItemOnPart_0ztg8sd_di" cmmnElementRef="PlanItemOnPart_0ztg8sd" targetCMMNElementRef="EntryCriterion_02ag1bu" isStandardEventVisible="false">
+        <di:waypoint x="300" y="192" />
+        <di:waypoint x="393" y="192" />
+        <di:waypoint x="393" y="225" />
+        <di:waypoint x="485" y="225" />
+        <cmmndi:CMMNLabel>
+          <dc:Bounds x="367" y="202" width="51" height="13" />
+        </cmmndi:CMMNLabel>
+      </cmmndi:CMMNEdge>
+      <cmmndi:CMMNShape id="ExitCriterion_0bgm1ux_di" cmmnElementRef="ExitCriterion_0bgm1ux">
+        <dc:Bounds x="686" y="155" width="20" height="28" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="ExitCriterion_1c36ky6_di" cmmnElementRef="ExitCriterion_1c36ky6">
+        <dc:Bounds x="686" y="212" width="20" height="28" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNEdge id="PlanItemOnPart_09chhm4_di" cmmnElementRef="PlanItemOnPart_09chhm4" targetCMMNElementRef="ExitCriterion_0bgm1ux" isStandardEventVisible="false">
+        <di:waypoint x="595" y="169" />
+        <di:waypoint x="641" y="169" />
+        <di:waypoint x="641" y="169" />
+        <di:waypoint x="686" y="169" />
+        <cmmndi:CMMNLabel>
+          <dc:Bounds x="625" y="159" width="33" height="13" />
+        </cmmndi:CMMNLabel>
+      </cmmndi:CMMNEdge>
+      <cmmndi:CMMNEdge id="PlanItemOnPart_0i3gzh0_di" cmmnElementRef="PlanItemOnPart_0i3gzh0" targetCMMNElementRef="ExitCriterion_1c36ky6" isStandardEventVisible="false">
+        <di:waypoint x="595" y="226" />
+        <di:waypoint x="641" y="226" />
+        <di:waypoint x="641" y="226" />
+        <di:waypoint x="686" y="226" />
+        <cmmndi:CMMNLabel>
+          <dc:Bounds x="625" y="215.5" width="33" height="13" />
+        </cmmndi:CMMNLabel>
+      </cmmndi:CMMNEdge>
+      <cmmndi:CMMNShape id="DiscretionaryItem_0n3iqjq_di" cmmnElementRef="PlanItem_0vhorb8">
+        <dc:Bounds x="319" y="290" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="DiscretionaryItem_0zxv8sb_di" cmmnElementRef="PlanItem_0w6zhi7">
+        <dc:Bounds x="552" y="290" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+      <cmmndi:CMMNShape id="DiscretionaryItem_1549lgf_di" cmmnElementRef="PlanItem_0xkmywb">
+        <dc:Bounds x="436" y="290" width="100" height="80" />
+        <cmmndi:CMMNLabel />
+      </cmmndi:CMMNShape>
+    </cmmndi:CMMNDiagram>
+  </cmmndi:CMMNDI>
+</cmmn:definitions>
