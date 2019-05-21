@@ -2,14 +2,14 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_057bbgy" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
   <bpmn:process id="TargetState" isExecutable="true">
     <bpmn:sequenceFlow id="SequenceFlow_0ku6bje" sourceRef="StartEvent_1" targetRef="ServiceTask_173jyzf" />
-    <bpmn:endEvent id="EndEvent_03ws9ew" name="Applicants to be interviewed selected">
+    <bpmn:endEvent id="EndEvent_03ws9ew" name="Interviews scheduled">
       <bpmn:incoming>SequenceFlow_0j19jbr</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:startEvent id="StartEvent_1" name="Manual evaluation has started">
       <bpmn:outgoing>SequenceFlow_0ku6bje</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:sequenceFlow id="SequenceFlow_01ybfew" sourceRef="Task_1qyitr7" targetRef="ExclusiveGateway_0xyj4yi" />
-    <bpmn:userTask id="Task_1qyitr7" name="Choose applicants to be interviewed">
+    <bpmn:userTask id="Task_1qyitr7" name="Choose further proceeding of applicants">
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="applicant" label="${applicants[0]} – Applicant to interview?" type="boolean" />
@@ -19,7 +19,7 @@
       <bpmn:outgoing>SequenceFlow_01ybfew</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="SequenceFlow_1uckrfx" sourceRef="Task_0a9vten" targetRef="ExclusiveGateway_1m32dhb" />
-    <bpmn:serviceTask id="Task_0a9vten" name="Schedule interviews with selected applicants">
+    <bpmn:serviceTask id="Task_0a9vten" name="Schedule interviews with applicants to be invited">
       <bpmn:incoming>SequenceFlow_0zv31o3</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1uckrfx</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -30,7 +30,7 @@
       <bpmn:outgoing>SequenceFlow_19lra3r</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="SequenceFlow_19lra3r" sourceRef="ExclusiveGateway_0xyj4yi" targetRef="Task_1h23skz" />
-    <bpmn:serviceTask id="Task_1h23skz" name="Inform not-selected applicants">
+    <bpmn:serviceTask id="Task_1h23skz" name="Inform selected applicants to be declined">
       <bpmn:incoming>SequenceFlow_19lra3r</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1coazkm</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -80,7 +80,7 @@ applicants=object.Applicants;</camunda:script>
       <bpmndi:BPMNShape id="EndEvent_03ws9ew_di" bpmnElement="EndEvent_03ws9ew">
         <dc:Bounds x="851" y="159" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="830" y="202" width="79" height="40" />
+          <dc:Bounds x="844" y="202" width="51" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_01ybfew_di" bpmnElement="SequenceFlow_01ybfew">

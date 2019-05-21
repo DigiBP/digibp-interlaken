@@ -2,11 +2,8 @@
 <cmmn:definitions xmlns:dc="http://www.omg.org/spec/CMMN/20151109/DC" xmlns:cmmndi="http://www.omg.org/spec/CMMN/20151109/CMMNDI" xmlns:cmmn="http://www.omg.org/spec/CMMN/20151109/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/CMMN/20151109/DI" id="Definitions_09d5bbx" targetNamespace="http://bpmn.io/schema/cmmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
   <cmmn:case id="Case_1hi7x30">
     <cmmn:casePlanModel id="CasePlanModel_1" name="Choose further proceeding">
-      <cmmn:planItem id="PlanItem_1" definitionRef="HumanTask_0qprk3d">
-        <cmmn:itemControl id="PlanItemControl_0xsvx8j">
-          <cmmn:manualActivationRule id="ManualActivationRule_1f3s38i" />
-        </cmmn:itemControl>
-      </cmmn:planItem>
+      <cmmn:extensionElements />
+      <cmmn:planItem id="PlanItem_1" definitionRef="HumanTask_0qprk3d" />
       <cmmn:planItem id="PlanItem_11e3akm" definitionRef="HumanTask_1teu2z2" />
       <cmmn:planItem id="PlanItem_0q7w639" definitionRef="Milestone_012pwo6">
         <cmmn:entryCriterion id="EntryCriterion_1q30kpp" sentryRef="Sentry_1c0pkvr" />
@@ -39,7 +36,7 @@
         <cmmn:discretionaryItem id="PlanItem_0w6zhi7" definitionRef="HumanTask_00td655" />
         <cmmn:discretionaryItem id="PlanItem_0xkmywb" definitionRef="HumanTask_1uv5zad" />
       </cmmn:planningTable>
-      <cmmn:humanTask id="HumanTask_0qprk3d" name="decide on application" />
+      <cmmn:humanTask id="HumanTask_0qprk3d" name="Decide on application" />
       <cmmn:humanTask id="HumanTask_1nodj3b" name="Consult applicant&#39;s assessment results" />
       <cmmn:humanTask id="HumanTask_1teu2z2" name="Consult interivew notes" />
       <cmmn:humanTask id="HumanTask_00td655" name="Consult with future team members" />
@@ -51,7 +48,7 @@
     </cmmn:casePlanModel>
   </cmmn:case>
   <cmmndi:CMMNDI>
-    <cmmndi:CMMNDiagram id="_5a66685b-5f57-4e2f-b1d1-acca4fae04b2">
+    <cmmndi:CMMNDiagram id="Interlaken_P3_CMMN_ChooseFurtherProceeding" name="P3_CMMN_Choose further proceeding">
       <cmmndi:Size width="500" height="500" />
       <cmmndi:CMMNShape id="DI_CasePlanModel_1" cmmnElementRef="CasePlanModel_1">
         <dc:Bounds x="164" y="119" width="532" height="284" />
