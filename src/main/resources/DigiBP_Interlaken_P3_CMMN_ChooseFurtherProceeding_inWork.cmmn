@@ -19,21 +19,6 @@
       <cmmn:planItem id="PlanItem_0kvm3jy" definitionRef="Milestone_05qn8g0">
         <cmmn:entryCriterion id="EntryCriterion_02ag1bu" sentryRef="Sentry_011zo7h" />
       </cmmn:planItem>
-      <cmmn:planItem id="PlanItem_0vhorb8" definitionRef="HumanTask_1nodj3b">
-        <cmmn:itemControl id="PlanItemControl_02ekkui">
-          <cmmn:manualActivationRule id="ManualActivationRule_1pppp2k" />
-        </cmmn:itemControl>
-      </cmmn:planItem>
-      <cmmn:planItem id="PlanItem_0xkmywb" definitionRef="HumanTask_1uv5zad">
-        <cmmn:itemControl id="PlanItemControl_1p31yp8">
-          <cmmn:manualActivationRule id="ManualActivationRule_0hmpk6b" />
-        </cmmn:itemControl>
-      </cmmn:planItem>
-      <cmmn:planItem id="PlanItem_0w6zhi7" definitionRef="HumanTask_00td655">
-        <cmmn:itemControl id="PlanItemControl_0jb9nzq">
-          <cmmn:manualActivationRule id="ManualActivationRule_16kqgy3" />
-        </cmmn:itemControl>
-      </cmmn:planItem>
       <cmmn:sentry id="Sentry_1c0pkvr">
         <cmmn:planItemOnPart id="PlanItemOnPart_08s8gq3" sourceRef="PlanItem_1">
           <cmmn:standardEvent>complete</cmmn:standardEvent>
@@ -54,6 +39,23 @@
           <cmmn:standardEvent>occur</cmmn:standardEvent>
         </cmmn:planItemOnPart>
       </cmmn:sentry>
+      <cmmn:planningTable id="PlanningTable_1clnerl">
+        <cmmn:discretionaryItem id="PlanItem_0vhorb8" definitionRef="HumanTask_1nodj3b">
+          <cmmn:itemControl id="PlanItemControl_1wqezmn">
+            <cmmn:manualActivationRule id="ManualActivationRule_03gc4xs" />
+          </cmmn:itemControl>
+        </cmmn:discretionaryItem>
+        <cmmn:discretionaryItem id="PlanItem_0xkmywb" definitionRef="HumanTask_1uv5zad">
+          <cmmn:itemControl id="PlanItemControl_0h0tiyo">
+            <cmmn:manualActivationRule id="ManualActivationRule_0d698kk" />
+          </cmmn:itemControl>
+        </cmmn:discretionaryItem>
+        <cmmn:discretionaryItem id="PlanItem_0w6zhi7" definitionRef="HumanTask_00td655">
+          <cmmn:itemControl id="PlanItemControl_030grcy">
+            <cmmn:manualActivationRule id="ManualActivationRule_029brwu" />
+          </cmmn:itemControl>
+        </cmmn:discretionaryItem>
+      </cmmn:planningTable>
       <cmmn:humanTask id="HumanTask_0qprk3d" name="Decide on application" />
       <cmmn:humanTask id="HumanTask_1nodj3b" name="Consult applicant&#39;s assessment results" />
       <cmmn:humanTask id="HumanTask_1teu2z2" name="Consult interivew notes" />
@@ -140,15 +142,15 @@
           <dc:Bounds x="625" y="215.5" width="33" height="13" />
         </cmmndi:CMMNLabel>
       </cmmndi:CMMNEdge>
-      <cmmndi:CMMNShape id="PlanItem_14r5kgn_di" cmmnElementRef="PlanItem_0vhorb8">
+      <cmmndi:CMMNShape id="DiscretionaryItem_1at3dz4_di" cmmnElementRef="PlanItem_0vhorb8">
         <dc:Bounds x="319" y="290" width="100" height="80" />
         <cmmndi:CMMNLabel />
       </cmmndi:CMMNShape>
-      <cmmndi:CMMNShape id="PlanItem_0ek3fdk_di" cmmnElementRef="PlanItem_0xkmywb">
+      <cmmndi:CMMNShape id="DiscretionaryItem_1n55me9_di" cmmnElementRef="PlanItem_0xkmywb">
         <dc:Bounds x="436" y="290" width="100" height="80" />
         <cmmndi:CMMNLabel />
       </cmmndi:CMMNShape>
-      <cmmndi:CMMNShape id="PlanItem_0dwltaz_di" cmmnElementRef="PlanItem_0w6zhi7">
+      <cmmndi:CMMNShape id="DiscretionaryItem_1331vns_di" cmmnElementRef="PlanItem_0w6zhi7">
         <dc:Bounds x="552" y="290" width="100" height="80" />
         <cmmndi:CMMNLabel />
       </cmmndi:CMMNShape>
