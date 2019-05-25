@@ -129,7 +129,7 @@
       <bpmn:incoming>SequenceFlow_07v089j</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_01zlrnf</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="Task_1n8e2wb" name="Send Refusal Email">
+    <bpmn:serviceTask id="Task_1n8e2wb" name="Send refusal Email">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
@@ -287,7 +287,7 @@ Status = object.Status;</camunda:script>
       <bpmn:incoming>SequenceFlow_13eg0tw</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0vfcre1</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="ServiceTask_109p9bs" name="Send Refusal Email">
+    <bpmn:serviceTask id="ServiceTask_109p9bs" name="Send refusal Email">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
