@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" id="Definitions_0ehwwlh" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <decision id="EvaluateAssessment" name="Decision 1">
+    <decisionTable id="decisionTable_1" hitPolicy="FIRST">
+      <input id="input_1" label="Score of Assessment">
+        <inputExpression id="inputExpression_1" typeRef="integer">
+          <text>AssessmentScore</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1bwtohn" label="Status">
+        <inputExpression id="LiteralExpression_1y88zog" typeRef="integer">
+          <text>Status</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="2nd assessment passed?" name="EvaluationPassed" typeRef="string" />
+      <rule id="DecisionRule_0ug0hdx">
+        <inputEntry id="UnaryTests_1ft03lh">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0y2n5mh">
+          <text>10</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0cahyjk">
+          <text>"No"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1xef8h3">
+        <inputEntry id="UnaryTests_0k5l8l5">
+          <text>&gt;=60</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04k786l">
+          <text>11</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1fdcv2o">
+          <text>"Yes"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0szqi4j">
+        <inputEntry id="UnaryTests_0xr6ip1">
+          <text>&lt;60</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07ok7e3">
+          <text>11</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1dptdpi">
+          <text>"No"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_08khn0z">
+        <inputEntry id="UnaryTests_0v6fsfd">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pmki0s">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1jbp8ol">
+          <text>"No"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+</definitions>
