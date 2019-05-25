@@ -4,7 +4,7 @@ function main()
     $.ajax
     ({
         dataType: "json",
-        url: "https://digibp.herokuapp.com/rest/version",
+        url: "https://interlaken.herokuapp.com/rest/version",
         success: function(data) 
         {
             console.log("log response on success");
