@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1waxmbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
   <bpmn:collaboration id="PostJob">
-    <bpmn:participant id="Participant_1rxu8yy" name="Company XY" processRef="PostJobToFB" />
+    <bpmn:participant id="Participant_1rxu8yy" name="Company XY" processRef="Interlaken_P0_Post_Job" />
   </bpmn:collaboration>
-  <bpmn:process id="PostJobToFB" isExecutable="true">
+  <bpmn:process id="Interlaken_P0_Post_Job" isExecutable="true">
     <bpmn:laneSet id="LaneSet_0g3bgo5">
       <bpmn:lane id="Lane_0qczg5z" name="Line Manager">
         <bpmn:flowNodeRef>Task_1sqted5</bpmn:flowNodeRef>
