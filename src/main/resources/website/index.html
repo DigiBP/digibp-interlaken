@@ -135,6 +135,8 @@
      						+ '<td class="interviewStartTime">' + starttime.replace(":00", "") + '</td>'
      						+ '<td class="interviewEndTime">' + endtime.replace(":00", "") + '</td></tr>');
    					});
+   					
+   					$("#scheduledInterviews").append('<tr><td colspan="4"><button id="startP3Btn" onclick="startProcess3()">Start process for upcoming interview</button></td></tr>');		
    				}
    		 	},
     		error: function (xhr) {
@@ -218,6 +220,27 @@
 				});
 				
 				alert("You have successfully declined the selected applicant(s)!\n\nTo get an updated version, please wait some seconds before reloading the page.");
+			}
+		}
+		
+		
+		/*
+			Start process 3: Initiates a new process instance on Camunda (Interlaken_P3)
+		*/
+		function startProcess3() {
+			if (confirm("Are you sure you want to start a camunda process for the next upcoming interview?")) {
+				$.ajax({
+ 					type: "POST",
+ 					dataType: "json",
+  					url: "https://interlaken.herokuapp.com/rest/process-definition/Interlaken_P3:1:8e09faa1-7d68-11e9-a6fb-b2db70d9fde5/start",
+	 				data: '{}',
+  					success: function(data){
+    					console.log("- - - successfully started a process P3 instance - - -");
+    					alert("You have successfully started a process instance!\n\nPlease go visit Camunda and login with your credentials to execute the process steps.");
+						window.open('https://interlaken.herokuapp.com/app/welcome/default/#/welcome');								
+					},
+  					contentType: 'application/json'
+				});		
 			}
 		}
 	</script>
