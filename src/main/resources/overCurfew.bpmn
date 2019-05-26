@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1jr7iun" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <bpmn:process id="overCurfew" name="overCurfew" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_0abh6jf</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="EndEvent_0m5lega">
+      <bpmn:incoming>SequenceFlow_1y42fqe</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="ServiceTask_16pjne1" name="Send invitation">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://hook.integromat.com/4etj9aezpaxc1w5l1ky5cjbjdut1cv5g</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
+"id": id
+});</camunda:script>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0abh6jf</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0laupuc</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="ServiceTask_1sahyje" name="Check for answer">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://hook.integromat.com/4kk1w21tr94kqewcz2x8r86usyqnzdp3</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
+"id": id
+});</camunda:script>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:outputParameter name="answerExists">
+              <camunda:script scriptFormat="JavaScript">object=JSON.parse(response);
+answerExists=object.answerExists;</camunda:script>
+            </camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0laupuc</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_09nj5qe</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="ServiceTask_0frh1z0" name="Send refusal &#34;past due-time&#34;">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://hook.integromat.com/qyu71cyn4i8rhtrbd2o4uysaiee3m23d</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
+"id": id
+});</camunda:script>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_09nj5qe</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1y42fqe</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_0laupuc" sourceRef="ServiceTask_16pjne1" targetRef="ServiceTask_1sahyje" />
+    <bpmn:sequenceFlow id="SequenceFlow_09nj5qe" sourceRef="ServiceTask_1sahyje" targetRef="ServiceTask_0frh1z0" />
+    <bpmn:sequenceFlow id="SequenceFlow_0abh6jf" sourceRef="StartEvent_1" targetRef="ServiceTask_16pjne1" />
+    <bpmn:sequenceFlow id="SequenceFlow_1y42fqe" sourceRef="ServiceTask_0frh1z0" targetRef="EndEvent_0m5lega" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="overCurfew">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0m5lega_di" bpmnElement="EndEvent_0m5lega">
+        <dc:Bounds x="740" y="103" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_16pjne1_di" bpmnElement="ServiceTask_16pjne1">
+        <dc:Bounds x="254" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_1sahyje_di" bpmnElement="ServiceTask_1sahyje">
+        <dc:Bounds x="403" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0frh1z0_di" bpmnElement="ServiceTask_0frh1z0">
+        <dc:Bounds x="568" y="81" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0laupuc_di" bpmnElement="SequenceFlow_0laupuc">
+        <di:waypoint x="354" y="121" />
+        <di:waypoint x="403" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_09nj5qe_di" bpmnElement="SequenceFlow_09nj5qe">
+        <di:waypoint x="503" y="121" />
+        <di:waypoint x="568" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0abh6jf_di" bpmnElement="SequenceFlow_0abh6jf">
+        <di:waypoint x="215" y="121" />
+        <di:waypoint x="254" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1y42fqe_di" bpmnElement="SequenceFlow_1y42fqe">
+        <di:waypoint x="668" y="121" />
+        <di:waypoint x="740" y="121" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
