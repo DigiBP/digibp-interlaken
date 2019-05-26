@@ -1,0 +1,126 @@
+
+body {
+	background-color: #f4f9ff;
+  	font-family: "Arial Narrow", Arial, sans-serif;
+  	color: #777777;
+  	font-size: large;
+  	line-height: 1.5;
+  	-webkit-font-smoothing: antialiased;
+}
+
+#bodyPane {
+	width: 100%;
+	text-align: center;
+}
+
+#bodyFooter {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #072f70;
+    color: white;
+    text-align: center;
+    font-size: medium;
+}
+
+#titlePane {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 75px;
+	display: inline-block;
+}
+
+#bodyTable {
+	display: inline-block;
+	padding-bottom: 5%;
+}
+
+#bodyTable td {
+	min-width: 500px;
+	text-align: center;
+}
+
+#applicantsToBeChosen {
+	min-height: 50px;
+	min-width: 200px;
+	margin-right: 50px;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
+    transition: box-shadow 83ms;
+}
+
+#applicants tr {
+	height: 30px;
+}
+
+#applicants td {
+	min-width: 70px;
+}
+
+.tableHead {
+	font-weight: bold;
+}
+
+.applicantName {
+	width: 140px;
+}
+
+.applicationScore, .assessmentScore, .culturalScore {
+	width: 140px;
+}
+
+.picker input {
+	width: 65px;
+    text-align: center;
+}
+
+#inviteBtn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 40px;
+    background-color: #0f8c11;
+    color: white;
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+    width: 200px;
+}
+
+#declineBtn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 40px;
+    background-color: #ad353d;
+    color: white;
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+    width: 200px;
+}
+
+#scheduledInterviews {
+	min-height: 60px;
+	min-width: 200px;
+	border-radius: 2px;
+	padding-top: 20px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.15), 0 2px 3px rgba(0,0,0,.2);
+    transition: box-shadow 83ms;
+}
+
+#scheduledInterviews tr {
+	height: 30px;
+}
+
+#scheduledInterviews td {
+	min-width: 110px;
+}
+
+.appo-picker {
+    margin-left: 49%;
+    margin-top: 250px;
+}
