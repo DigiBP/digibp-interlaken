@@ -2,7 +2,7 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1tuvnm5" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
   <bpmn:message id="Message_0h1gog9" name="StartScreening" />
   <bpmn:collaboration id="DigiBP_Interlaken_P1_notUsedId">
-    <bpmn:participant id="Participant_1bwhr4n" name="Company XY" processRef="DigiBP_Interlaken_p1" />
+    <bpmn:participant id="Participant_1bwhr4n" name="Company XY" processRef="DigiBP_Interlaken_P1" />
     <bpmn:participant id="Participant_00ppsxx" name="Applicant" processRef="Process_1k5qsfc" />
     <bpmn:messageFlow id="MessageFlow_10y83bo" sourceRef="Participant_00ppsxx" targetRef="newApplication" />
     <bpmn:messageFlow id="MessageFlow_02pcm87" sourceRef="Task_1n8e2wb" targetRef="Participant_00ppsxx" />
@@ -12,9 +12,9 @@
     <bpmn:messageFlow id="MessageFlow_1961og6" sourceRef="ServiceTask_1iejlcx" targetRef="Participant_00ppsxx" />
     <bpmn:messageFlow id="MessageFlow_0tflhz3" sourceRef="ServiceTask_02snssc" targetRef="Participant_00ppsxx" />
   </bpmn:collaboration>
-  <bpmn:process id="DigiBP_Interlaken_p1" isExecutable="true">
+  <bpmn:process id="DigiBP_Interlaken_P1" isExecutable="true">
     <bpmn:laneSet id="LaneSet_022fc8e">
-      <bpmn:lane id="DigiBP_Interlaken_P1" name="HR Manager">
+      <bpmn:lane id="DigiBP_Interlaken_P1_HRManager" name="HR Manager">
         <bpmn:flowNodeRef>ExclusiveGateway_07l65ve</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_0wu7nn0</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1ou5go7</bpmn:flowNodeRef>
@@ -228,7 +228,7 @@
       <bpmn:incoming>SequenceFlow_1lio84q</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0ehtnft</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_0gcvgzc">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT3M</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT6M</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:serviceTask id="ServiceTask_15fu4i3" name="Get assessment score and status">
@@ -249,7 +249,11 @@
             </camunda:inputParameter>
             <camunda:outputParameter name="AssessmentScore">
               <camunda:script scriptFormat="JavaScript">object = JSON.parse(response);
-AssessmentScore = object.AssessmentScore;</camunda:script>
+if(object.AssessmentScore==""||object.AssessmentScore==null){
+AssessmentScore = 1;
+ } else {
+AssessmentScore = object.AssessmentScore;
+}</camunda:script>
             </camunda:outputParameter>
             <camunda:outputParameter name="Status">
               <camunda:script scriptFormat="JavaScript">object = JSON.parse(response);
@@ -612,7 +616,7 @@ culturalScore=object.culturalScore;</camunda:script>
           <dc:Bounds x="516" y="202" width="62" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Lane_09c44xl_di" bpmnElement="DigiBP_Interlaken_P1" isHorizontal="true">
+      <bpmndi:BPMNShape id="Lane_09c44xl_di" bpmnElement="DigiBP_Interlaken_P1_HRManager" isHorizontal="true">
         <dc:Bounds x="186" y="62" width="2438" height="313" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_00ppsxx_di" bpmnElement="Participant_00ppsxx" isHorizontal="true">
