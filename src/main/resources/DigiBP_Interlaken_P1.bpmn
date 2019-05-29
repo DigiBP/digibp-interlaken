@@ -34,15 +34,16 @@
         <bpmn:flowNodeRef>ServiceTask_1gykygn</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_0m7mcoo</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ServiceTask_08bbe8a</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>IntermediateCatchEvent_0ngzn6b</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ExclusiveGateway_0kokpdx</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ServiceTask_02snssc</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ServiceTask_1iejlcx</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>EndEvent_0yh8po1</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1hw4txz</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ServiceTask_0owxnsm</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>ServiceTask_109p9bs</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>EndEvent_1o60d9v</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>IntermediateCatchEvent_0ngzn6b</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ServiceTask_0hifnr9</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_0yh8po1</bpmn:flowNodeRef>
       </bpmn:lane>
     </bpmn:laneSet>
     <bpmn:exclusiveGateway id="ExclusiveGateway_07l65ve" name="Passed">
@@ -295,7 +296,7 @@ Status = object.Status;</camunda:script>
       <bpmn:incoming>SequenceFlow_1i81oz9</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_14ssmp9</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="ServiceTask_1q6oe0g" name="Send invitation">
+    <bpmn:serviceTask id="ServiceTask_1q6oe0g" name="Send invitation &#34;Dialog Flow&#34;">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
@@ -318,7 +319,7 @@ Status = object.Status;</camunda:script>
       <bpmn:incoming>SequenceFlow_14ssmp9</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1mib7pd</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="ServiceTask_1gykygn" name="Check for answer">
+    <bpmn:serviceTask id="ServiceTask_1gykygn" name="Check answers">
       <bpmn:extensionElements>
         <camunda:connector>
           <camunda:inputOutput>
@@ -377,7 +378,7 @@ culturalScore=object.culturalScore;</camunda:script>
       <bpmn:incoming>SequenceFlow_1ghkina</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1k4v0tr</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_0ngzn6b">
+    <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_0ngzn6b" name="wait for answer">
       <bpmn:incoming>SequenceFlow_1mib7pd</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1jeeowl</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_0i02xkh">
@@ -394,7 +395,7 @@ culturalScore=object.culturalScore;</camunda:script>
     <bpmn:sequenceFlow id="SequenceFlow_0kegh6w" name="YES" sourceRef="ExclusiveGateway_0kokpdx" targetRef="ServiceTask_1iejlcx">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${culturalScore&gt;=50}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="SequenceFlow_18vbq8z" name="NO" sourceRef="ExclusiveGateway_0m7mcoo" targetRef="ServiceTask_02snssc">
+    <bpmn:sequenceFlow id="SequenceFlow_18vbq8z" name="NO" sourceRef="ExclusiveGateway_0m7mcoo" targetRef="ServiceTask_0hifnr9">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${answerExists==false}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1d5bg41" sourceRef="ServiceTask_02snssc" targetRef="EndEvent_0yh8po1" />
@@ -429,7 +430,6 @@ culturalScore=object.culturalScore;</camunda:script>
         </camunda:connector>
       </bpmn:extensionElements>
       <bpmn:incoming>SequenceFlow_1afxf8e</bpmn:incoming>
-      <bpmn:incoming>SequenceFlow_18vbq8z</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1d5bg41</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:serviceTask id="ServiceTask_1iejlcx" name="Send passed">
@@ -455,9 +455,6 @@ culturalScore=object.culturalScore;</camunda:script>
       <bpmn:incoming>SequenceFlow_0kegh6w</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0ek77nc</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:endEvent id="EndEvent_0yh8po1">
-      <bpmn:incoming>SequenceFlow_1d5bg41</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:endEvent id="EndEvent_1hw4txz">
       <bpmn:incoming>SequenceFlow_0ek77nc</bpmn:incoming>
     </bpmn:endEvent>
@@ -511,6 +508,34 @@ culturalScore=object.culturalScore;</camunda:script>
     </bpmn:serviceTask>
     <bpmn:endEvent id="EndEvent_1o60d9v">
       <bpmn:incoming>SequenceFlow_1ilg951</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="ServiceTask_0hifnr9" name="Send refusal &#34;TimeLimit exceeded&#34;">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://hook.integromat.com/qyu71cyn4i8rhtrbd2o4uysaiee3m23d</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="JavaScript">out = JSON.stringify({
+"id": id
+});</camunda:script>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_18vbq8z</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_03nka4z</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="SequenceFlow_03nka4z" sourceRef="ServiceTask_0hifnr9" targetRef="EndEvent_0yh8po1" />
+    <bpmn:endEvent id="EndEvent_0yh8po1">
+      <bpmn:incoming>SequenceFlow_1d5bg41</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_03nka4z</bpmn:incoming>
     </bpmn:endEvent>
   </bpmn:process>
   <bpmn:process id="Process_1k5qsfc" isExecutable="false" />
@@ -725,7 +750,7 @@ culturalScore=object.culturalScore;</camunda:script>
         <dc:Bounds x="2286" y="144" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_0yh8po1_di" bpmnElement="EndEvent_0yh8po1">
-        <dc:Bounds x="2444" y="166" width="36" height="36" />
+        <dc:Bounds x="2318" y="78" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="EndEvent_1hw4txz_di" bpmnElement="EndEvent_1hw4txz">
         <dc:Bounds x="2565" y="296" width="36" height="36" />
@@ -744,6 +769,9 @@ culturalScore=object.culturalScore;</camunda:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_0ngzn6b_di" bpmnElement="IntermediateCatchEvent_0ngzn6b">
         <dc:Bounds x="1873" y="296" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1853" y="348" width="75" height="14" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_1mib7pd_di" bpmnElement="SequenceFlow_1mib7pd">
         <di:waypoint x="1842" y="314" />
@@ -777,15 +805,14 @@ culturalScore=object.culturalScore;</camunda:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_18vbq8z_di" bpmnElement="SequenceFlow_18vbq8z">
         <di:waypoint x="2106" y="289" />
-        <di:waypoint x="2106" y="184" />
-        <di:waypoint x="2286" y="184" />
+        <di:waypoint x="2106" y="224" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2082" y="234.5" width="17" height="14" />
+          <dc:Bounds x="2081" y="254" width="17" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_1d5bg41_di" bpmnElement="SequenceFlow_1d5bg41">
-        <di:waypoint x="2386" y="184" />
-        <di:waypoint x="2444" y="184" />
+        <di:waypoint x="2336" y="144" />
+        <di:waypoint x="2336" y="114" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="SequenceFlow_0ek77nc_di" bpmnElement="SequenceFlow_0ek77nc">
         <di:waypoint x="2512" y="314" />
@@ -811,11 +838,17 @@ culturalScore=object.culturalScore;</camunda:script>
         <di:waypoint x="2462" y="418" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="MessageFlow_0tflhz3_di" bpmnElement="MessageFlow_0tflhz3">
-        <di:waypoint x="2336" y="144" />
-        <di:waypoint x="2336" y="109" />
-        <di:waypoint x="2537" y="109" />
-        <di:waypoint x="2537" y="396" />
+        <di:waypoint x="2386" y="184" />
+        <di:waypoint x="2537" y="184" />
         <di:waypoint x="2537" y="418" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_0hifnr9_di" bpmnElement="ServiceTask_0hifnr9">
+        <dc:Bounds x="2056" y="144" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_03nka4z_di" bpmnElement="SequenceFlow_03nka4z">
+        <di:waypoint x="2106" y="144" />
+        <di:waypoint x="2106" y="96" />
+        <di:waypoint x="2318" y="96" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
