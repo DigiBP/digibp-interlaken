@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1waxmbm" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
+  <bpmn:collaboration id="PostJob">
+    <bpmn:participant id="Participant_1rxu8yy" processRef="PostJobToFB" />
+  </bpmn:collaboration>
+  <bpmn:process id="PostJobToFB" isExecutable="true">
+    <bpmn:laneSet id="LaneSet_0g3bgo5">
+      <bpmn:lane id="Lane_0qczg5z" name="Line Manager">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_1lcfti3</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_1sqted5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>UserTask_0s3bimq</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_1h0nqn3" name="HR Manager">
+        <bpmn:flowNodeRef>UserTask_0mn08lt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_0af6hni</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ServiceTask_1qyoy9u</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ExclusiveGateway_0om8ad8</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Task_1s63l4x</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ServiceTask_0rfmvpm</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>EndEvent_00nxf8a</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>UserTask_0sx5d6z</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:userTask id="UserTask_0mn08lt" name="Check Existing Job" camunda:assignee="HRManager">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="ExistingJob" label="Does the job already exist?" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0jb72yf</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0gk00cn</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0af6hni" name="Existing Job?">
+      <bpmn:incoming>SequenceFlow_0gk00cn</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1oar2gf</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0gloa4f</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="ServiceTask_1qyoy9u" name="Retrieve job descriptions">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://hook.integromat.com/fltu6m32t6tcf1f4nlv5b8q5gg6gk9sy</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="javascript">out = JSON.stringify({
+        "JobTitle": JobTitle
+});</camunda:script>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:outputParameter name="JobTitle">
+              <camunda:script scriptFormat="javascript">object = JSON.parse(response);
+JobTitle = object.JobTitle;</camunda:script>
+            </camunda:outputParameter>
+            <camunda:outputParameter name="JobDescription">
+              <camunda:script scriptFormat="javascript">object = JSON.parse(response);
+JobDescription = object.JobDescription;</camunda:script>
+            </camunda:outputParameter>
+            <camunda:outputParameter name="MinEducation">
+              <camunda:script scriptFormat="javascript">object = JSON.parse(response);
+MinEducation = object.MinEducation;</camunda:script>
+            </camunda:outputParameter>
+            <camunda:outputParameter name="MinExperienceInYears">
+              <camunda:script scriptFormat="javascript">object = JSON.parse(response);
+MinExperienceInYears  = object.MinExperienceInYears;</camunda:script>
+            </camunda:outputParameter>
+            <camunda:outputParameter name="Skills">
+              <camunda:script scriptFormat="javascript">object = JSON.parse(response);
+Skills = object.Skills;</camunda:script>
+            </camunda:outputParameter>
+            <camunda:outputParameter name="ApplicationLink">
+              <camunda:script scriptFormat="javascript">object = JSON.parse(response);
+ApplicationLink = object.ApplicationLink;</camunda:script>
+            </camunda:outputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1c1g4mq</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1pjr2kh</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_1o71q2g</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0om8ad8">
+      <bpmn:incoming>SequenceFlow_1pjr2kh</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0urligj</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1wb2eqv</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:userTask id="Task_1s63l4x" name="Review Job Description and Post" camunda:assignee="HRManager">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="JobTitle" label="Job Title" type="string" />
+          <camunda:formField id="JobDescription" label="Job Description" type="string" />
+          <camunda:formField id="MinEducation" label="Education" type="string" />
+          <camunda:formField id="MinExperienceInYears" label="Years of job experience required" type="long" />
+          <camunda:formField id="Skills" label="Skills" type="string" />
+          <camunda:formField id="ApplicationLink" label="Application Link" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1wb2eqv</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1s7nkzt</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="ServiceTask_0rfmvpm" name="Post Job ">
+      <bpmn:extensionElements>
+        <camunda:connector>
+          <camunda:inputOutput>
+            <camunda:inputParameter name="url">https://hook.integromat.com/my7lnlvgbvofyij8v3rcx94v40ljykfl</camunda:inputParameter>
+            <camunda:inputParameter name="method">POST</camunda:inputParameter>
+            <camunda:inputParameter name="headers">
+              <camunda:map>
+                <camunda:entry key="Content-Type">application/json</camunda:entry>
+              </camunda:map>
+            </camunda:inputParameter>
+            <camunda:inputParameter name="payload">
+              <camunda:script scriptFormat="javascript">out = JSON.stringify({
+"JobTitle": JobTitle,
+"JobDescription": JobDescription,
+"MinEducation": MinEducation,
+"MinExperienceInYears": 
+ MinExperienceInYears,
+"Skills": Skills,
+"ApplicationLink": ApplicationLink
+});</camunda:script>
+            </camunda:inputParameter>
+          </camunda:inputOutput>
+          <camunda:connectorId>http-connector</camunda:connectorId>
+        </camunda:connector>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1s7nkzt</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1w1v45s</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="EndEvent_00nxf8a">
+      <bpmn:incoming>SequenceFlow_1w1v45s</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Task_1lcfti3" name="Save new Job describtion">
+      <bpmn:incoming>SequenceFlow_06owvug</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0urligj</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Task_1sqted5" name="Request new Employee for job" camunda:assignee="lineManager">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="JobName" />
+          <camunda:formField id="MinExperienceInYears" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1o71q2g</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0jb72yf</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="UserTask_0sx5d6z" name="Choose job description" camunda:assignee="HRManager">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="JobTitle" label="Job title of job to be posted" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_1oar2gf</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1c1g4mq</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="UserTask_0s3bimq" name="Create job description&#10;" camunda:assignee="HRManager">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="JobTitle" label="Job Title" type="string" />
+          <camunda:formField id="JobDescription" label="Job Description" type="string" />
+          <camunda:formField id="MinEducation" label="Minimum Education Requirement (Degree)" type="string" />
+          <camunda:formField id="MinExperienceInYears" label="Experience in years" type="string" />
+          <camunda:formField id="Skills" label="Expected Skills" type="string" />
+          <camunda:formField id="ApplicationLink" label="Link to apply" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0gloa4f</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_06owvug</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="SequenceFlow_1o71q2g" sourceRef="StartEvent_1" targetRef="Task_1sqted5" />
+    <bpmn:sequenceFlow id="SequenceFlow_0gk00cn" sourceRef="UserTask_0mn08lt" targetRef="ExclusiveGateway_0af6hni" />
+    <bpmn:sequenceFlow id="SequenceFlow_1oar2gf" name="Yes" sourceRef="ExclusiveGateway_0af6hni" targetRef="UserTask_0sx5d6z">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${ExistingJob == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_1c1g4mq" sourceRef="UserTask_0sx5d6z" targetRef="ServiceTask_1qyoy9u" />
+    <bpmn:sequenceFlow id="SequenceFlow_0gloa4f" name="No" sourceRef="ExclusiveGateway_0af6hni" targetRef="UserTask_0s3bimq">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${ExistingJob == false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_1pjr2kh" sourceRef="ServiceTask_1qyoy9u" targetRef="ExclusiveGateway_0om8ad8" />
+    <bpmn:sequenceFlow id="SequenceFlow_06owvug" sourceRef="UserTask_0s3bimq" targetRef="Task_1lcfti3" />
+    <bpmn:sequenceFlow id="SequenceFlow_1wb2eqv" sourceRef="ExclusiveGateway_0om8ad8" targetRef="Task_1s63l4x" />
+    <bpmn:sequenceFlow id="SequenceFlow_1s7nkzt" sourceRef="Task_1s63l4x" targetRef="ServiceTask_0rfmvpm" />
+    <bpmn:sequenceFlow id="SequenceFlow_1w1v45s" sourceRef="ServiceTask_0rfmvpm" targetRef="EndEvent_00nxf8a" />
+    <bpmn:sequenceFlow id="SequenceFlow_0jb72yf" sourceRef="Task_1sqted5" targetRef="UserTask_0mn08lt" />
+    <bpmn:sequenceFlow id="SequenceFlow_0urligj" sourceRef="Task_1lcfti3" targetRef="ExclusiveGateway_0om8ad8" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="PostJob">
+      <bpmndi:BPMNShape id="Participant_1rxu8yy_di" bpmnElement="Participant_1rxu8yy" isHorizontal="true">
+        <dc:Bounds x="156" y="81" width="1403" height="355" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="224" y="148" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0mn08lt_di" bpmnElement="UserTask_0mn08lt">
+        <dc:Bounds x="423" y="305" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0sx5d6z_di" bpmnElement="UserTask_0sx5d6z">
+        <dc:Bounds x="755" y="305" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0af6hni_di" bpmnElement="ExclusiveGateway_0af6hni" isMarkerVisible="true">
+        <dc:Bounds x="617" y="320" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="609" y="378" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_1qyoy9u_di" bpmnElement="ServiceTask_1qyoy9u">
+        <dc:Bounds x="920" y="305" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0om8ad8_di" bpmnElement="ExclusiveGateway_0om8ad8" isMarkerVisible="true">
+        <dc:Bounds x="1057" y="320" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0rfmvpm_di" bpmnElement="ServiceTask_0rfmvpm">
+        <dc:Bounds x="1355" y="305" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_00nxf8a_di" bpmnElement="EndEvent_00nxf8a">
+        <dc:Bounds x="1503" y="327" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_10gf7rh_di" bpmnElement="Task_1s63l4x">
+        <dc:Bounds x="1188" y="305" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0s3bimq_di" bpmnElement="UserTask_0s3bimq">
+        <dc:Bounds x="755" y="145" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1s7nkzt_di" bpmnElement="SequenceFlow_1s7nkzt">
+        <di:waypoint x="1288" y="345" />
+        <di:waypoint x="1355" y="345" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1wb2eqv_di" bpmnElement="SequenceFlow_1wb2eqv">
+        <di:waypoint x="1107" y="345" />
+        <di:waypoint x="1188" y="345" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1w1v45s_di" bpmnElement="SequenceFlow_1w1v45s">
+        <di:waypoint x="1455" y="345" />
+        <di:waypoint x="1503" y="345" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1o71q2g_di" bpmnElement="SequenceFlow_1o71q2g">
+        <di:waypoint x="260" y="166" />
+        <di:waypoint x="309" y="166" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_06owvug_di" bpmnElement="SequenceFlow_06owvug">
+        <di:waypoint x="855" y="185" />
+        <di:waypoint x="920" y="185" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1pjr2kh_di" bpmnElement="SequenceFlow_1pjr2kh">
+        <di:waypoint x="1020" y="345" />
+        <di:waypoint x="1057" y="345" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0gloa4f_di" bpmnElement="SequenceFlow_0gloa4f">
+        <di:waypoint x="642" y="320" />
+        <di:waypoint x="642" y="185" />
+        <di:waypoint x="755" y="185" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="652" y="196" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1c1g4mq_di" bpmnElement="SequenceFlow_1c1g4mq">
+        <di:waypoint x="855" y="345" />
+        <di:waypoint x="920" y="345" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1oar2gf_di" bpmnElement="SequenceFlow_1oar2gf">
+        <di:waypoint x="667" y="345" />
+        <di:waypoint x="755" y="345" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="702" y="328" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0gk00cn_di" bpmnElement="SequenceFlow_0gk00cn">
+        <di:waypoint x="523" y="345" />
+        <di:waypoint x="617" y="345" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Lane_0qczg5z_di" bpmnElement="Lane_0qczg5z" isHorizontal="true">
+        <dc:Bounds x="186" y="81" width="1373" height="177" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1h0nqn3_di" bpmnElement="Lane_1h0nqn3" isHorizontal="true">
+        <dc:Bounds x="186" y="258" width="1373" height="178" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="UserTask_0x3l00v_di" bpmnElement="Task_1sqted5">
+        <dc:Bounds x="309" y="126" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0jb72yf_di" bpmnElement="SequenceFlow_0jb72yf">
+        <di:waypoint x="409" y="166" />
+        <di:waypoint x="473" y="166" />
+        <di:waypoint x="473" y="305" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0urligj_di" bpmnElement="SequenceFlow_0urligj">
+        <di:waypoint x="1020" y="185" />
+        <di:waypoint x="1082" y="185" />
+        <di:waypoint x="1082" y="320" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_18y0i4m_di" bpmnElement="Task_1lcfti3">
+        <dc:Bounds x="920" y="145" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
