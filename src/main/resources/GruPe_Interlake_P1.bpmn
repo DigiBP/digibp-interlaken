@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_18tlg4f" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
-  <bpmn:collaboration id="GruPe_Interlaken_P1">
+  <bpmn:collaboration id="Interlaken_GruPe_P1_1">
     <bpmn:participant id="companyXY" name="Company XY" processRef="Interlaken_GruPe_P1" />
     <bpmn:participant id="applicant" name="Applicant" processRef="Process_0vbokqu" />
     <bpmn:messageFlow id="MessageFlow_138phib" sourceRef="sendInvitationDF" targetRef="applicant" />
@@ -75,19 +75,19 @@ answerExists=object.answerExists;</camunda:script>
       <bpmn:incoming>SequenceFlow_0iymgfj</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0x0co70</bpmn:outgoing>
       <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT3M</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT2M</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0apt0c9" sourceRef="StartEvent_1p3cwmw" targetRef="sendInvitationDF" />
     <bpmn:sequenceFlow id="SequenceFlow_0iymgfj" sourceRef="sendInvitationDF" targetRef="waitForAnswer" />
     <bpmn:sequenceFlow id="SequenceFlow_1lp2suj" sourceRef="validateResult" targetRef="ExclusiveGateway_1wen2vu" />
     <bpmn:sequenceFlow id="answer" name="yes" sourceRef="answerReceived" targetRef="validateResult">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${answerExists==true}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${answerExists=="TRUE"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1d36pky" sourceRef="checkAnswers" targetRef="answerReceived" />
     <bpmn:sequenceFlow id="SequenceFlow_0x0co70" sourceRef="waitForAnswer" targetRef="checkAnswers" />
     <bpmn:sequenceFlow id="noAnswer" name="no" sourceRef="answerReceived" targetRef="sendRefusalTLE">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${answerExists==false}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${answerExists=="FALSE"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0jobuqh" sourceRef="sendRefusalTLE" targetRef="EndEvent_0n9gyuv" />
     <bpmn:serviceTask id="sendRefusalTLE" name="Send refusal &#34;TimeLimit exceeded&#34;">
@@ -209,7 +209,7 @@ culturalScore=object.culturalScore;</camunda:script>
   </bpmn:process>
   <bpmn:process id="Process_0vbokqu" isExecutable="false" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
-    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="GruPe_Interlaken_P1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Interlaken_GruPe_P1_1">
       <bpmndi:BPMNShape id="Participant_1swdw5j_di" bpmnElement="companyXY" isHorizontal="true">
         <dc:Bounds x="131" y="61" width="1197" height="428" />
       </bpmndi:BPMNShape>

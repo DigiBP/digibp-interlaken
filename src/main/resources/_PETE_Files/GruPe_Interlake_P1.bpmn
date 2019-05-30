@@ -71,23 +71,23 @@ answerExists=object.answerExists;</camunda:script>
       <bpmn:outgoing>answer</bpmn:outgoing>
       <bpmn:outgoing>noAnswer</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:intermediateCatchEvent id="waitForAnswer" name="WaitForAnswer">
+    <bpmn:intermediateCatchEvent id="waitForAnswer" name="wait for answer">
       <bpmn:incoming>SequenceFlow_0iymgfj</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0x0co70</bpmn:outgoing>
       <bpmn:timerEventDefinition>
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT5M</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT2M</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="SequenceFlow_0apt0c9" sourceRef="StartEvent_1p3cwmw" targetRef="sendInvitationDF" />
     <bpmn:sequenceFlow id="SequenceFlow_0iymgfj" sourceRef="sendInvitationDF" targetRef="waitForAnswer" />
     <bpmn:sequenceFlow id="SequenceFlow_1lp2suj" sourceRef="validateResult" targetRef="ExclusiveGateway_1wen2vu" />
     <bpmn:sequenceFlow id="answer" name="yes" sourceRef="answerReceived" targetRef="validateResult">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${answerExists==true}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${answerExists=="TRUE"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_1d36pky" sourceRef="checkAnswers" targetRef="answerReceived" />
     <bpmn:sequenceFlow id="SequenceFlow_0x0co70" sourceRef="waitForAnswer" targetRef="checkAnswers" />
     <bpmn:sequenceFlow id="noAnswer" name="no" sourceRef="answerReceived" targetRef="sendRefusalTLE">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${answerExists==false}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${answerExists=="FALSE"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="SequenceFlow_0jobuqh" sourceRef="sendRefusalTLE" targetRef="EndEvent_0n9gyuv" />
     <bpmn:serviceTask id="sendRefusalTLE" name="Send refusal &#34;TimeLimit exceeded&#34;">
@@ -258,7 +258,7 @@ culturalScore=object.culturalScore;</camunda:script>
       <bpmndi:BPMNShape id="IntermediateCatchEvent_0wjdkfl_di" bpmnElement="waitForAnswer">
         <dc:Bounds x="398" y="208" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="379" y="251" width="75" height="14" />
+          <dc:Bounds x="378" y="181" width="75" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="SequenceFlow_0apt0c9_di" bpmnElement="SequenceFlow_0apt0c9">
