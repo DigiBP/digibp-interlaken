@@ -232,7 +232,8 @@
 				$.ajax({
  					type: "POST",
  					dataType: "json",
-  					url: "https://interlaken.herokuapp.com/rest/process-definition/Interlaken_P3:1:8e09faa1-7d68-11e9-a6fb-b2db70d9fde5/start",
+  					url: "https://interlaken.herokuapp.com/rest/process-definition/dbf1a1cd-8440-11e9-bd02-1ee51f46e0b3/start", 
+  						// IMPORTANT: Includes definition ID of process, has to be updated if new deployment is made!
 	 				data: '{}',
   					success: function(data){
     					console.log("- - - successfully started a process P3 instance - - -");
