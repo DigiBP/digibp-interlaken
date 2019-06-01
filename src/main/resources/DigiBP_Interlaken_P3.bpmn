@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_057bbgy" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.0.0-beta.2">
   <bpmn:collaboration id="NOT_USED_FOR_DISPLAYING">
-    <bpmn:participant id="Participant_0fdpo56" name="Company XY" processRef="Interlaken_P3" />
+    <bpmn:participant id="Participant_0fdpo56" name="Company XY" processRef="DigiBP_Interlaken_P3_triggeredByWebsite" />
     <bpmn:participant id="Participant_0essbtk" name="Applicant" processRef="Process_1vac0hj" />
     <bpmn:messageFlow id="MessageFlow_1jxf2p2" sourceRef="ServiceTask_07cdw0e" targetRef="Participant_0essbtk" />
     <bpmn:messageFlow id="MessageFlow_0ept8ss" sourceRef="Participant_0essbtk" targetRef="Task_1hm6sxq" />
   </bpmn:collaboration>
-  <bpmn:process id="Interlaken_P3" name="Interlaken_P3" isExecutable="true" camunda:candidateStarterUsers="demo">
+  <bpmn:process id="DigiBP_Interlaken_P3_triggeredByWebsite" name="Interlaken_P3" isExecutable="true" camunda:candidateStarterUsers="demo">
     <bpmn:laneSet id="LaneSet_1kfy52u">
       <bpmn:lane id="Lane_1ke4p67" name="HR Manager">
         <bpmn:flowNodeRef>Task_15u8se1</bpmn:flowNodeRef>
