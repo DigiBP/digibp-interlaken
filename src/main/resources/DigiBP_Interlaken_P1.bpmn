@@ -229,7 +229,7 @@
       <bpmn:incoming>SequenceFlow_1lio84q</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0ehtnft</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_0gcvgzc">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT6M</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT3M</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:serviceTask id="ServiceTask_15fu4i3" name="Get assessment score and status">
@@ -386,7 +386,7 @@ culturalScore=object.culturalScore;</camunda:script>
       <bpmn:incoming>SequenceFlow_1mib7pd</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1jeeowl</bpmn:outgoing>
       <bpmn:timerEventDefinition id="TimerEventDefinition_0i02xkh">
-        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT3M</bpmn:timeDuration>
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT2M</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
     <bpmn:sequenceFlow id="SequenceFlow_1mib7pd" sourceRef="ServiceTask_1q6oe0g" targetRef="IntermediateCatchEvent_0ngzn6b" />
