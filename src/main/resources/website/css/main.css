@@ -103,6 +103,18 @@ body {
     width: 200px;
 }
 
+#startP3Btn {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    height: 40px;
+    background-color: #072f70;
+    color: white;
+    text-align: center;
+    font-size: small;
+    font-weight: bold;
+    width: 300px;
+}
+
 #scheduledInterviews {
 	min-height: 60px;
 	min-width: 200px;
