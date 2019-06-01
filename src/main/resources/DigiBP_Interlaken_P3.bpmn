@@ -6,7 +6,7 @@
     <bpmn:messageFlow id="MessageFlow_1jxf2p2" sourceRef="ServiceTask_07cdw0e" targetRef="Participant_0essbtk" />
     <bpmn:messageFlow id="MessageFlow_0ept8ss" sourceRef="Participant_0essbtk" targetRef="Task_1hm6sxq" />
   </bpmn:collaboration>
-  <bpmn:process id="DigiBP_Interlaken_P3_triggeredByWebsite" name="Interlaken_P3" isExecutable="true" camunda:candidateStarterUsers="demo">
+  <bpmn:process id="DigiBP_Interlaken_P3_triggeredByWebsite" name="DigiBP_Interlaken_P3_triggeredByWebsite" isExecutable="true" camunda:candidateStarterUsers="demo">
     <bpmn:laneSet id="LaneSet_1kfy52u">
       <bpmn:lane id="Lane_1ke4p67" name="HR Manager">
         <bpmn:flowNodeRef>Task_15u8se1</bpmn:flowNodeRef>
